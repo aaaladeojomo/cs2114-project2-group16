@@ -4,25 +4,97 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+// -------------------------------------------------------------------------
+/**
+ * Tests for NormalSegment.
+ *
+ * @author Rafik Khismatov
+ * @version Oct 15, 2026
+ */
 public class NormalSegmentTest
 {
+    private NormalSegment head;
+    private NormalSegment body;
 
+    /**
+     * Creates a head segment and a body segment before each test.
+     */
     @Before
     public void setUp()
-        throws Exception
     {
+        head = new NormalSegment(2, 4, true);
+        body = new NormalSegment(3, 4, false);
     }
-    //~ Fields ................................................................
 
 
+    /**
+     * The constructor stores the coordinates.
+     */
     @Test
-    public final void test()
+    public void testConstructor()
     {
-        fail("Not yet implemented");
+        assertEquals(2, head.getRow());
+        assertEquals(4, head.getCol());
     }
 
-    //~ Constructors ..........................................................
 
-    //~Public  Methods ........................................................
+    /**
+     * Negative coordinates throw an exception.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructorNegative()
+    {
+        new NormalSegment(-2, 4, false);
+    }
 
+
+    /**
+     * The head shows 'H' and a body segment shows 'o'.
+     */
+    @Test
+    public void testGetSymbol()
+    {
+        assertEquals('H', head.getSymbol());
+        assertEquals('o', body.getSymbol());
+    }
+
+
+    /**
+     * isHead returns the head flag.
+     */
+    @Test
+    public void testIsHead()
+    {
+        assertTrue(head.isHead());
+        assertFalse(body.isHead());
+    }
+
+
+    /**
+     * setHead changes the flag and the symbol.
+     */
+    @Test
+    public void testSetHead()
+    {
+        head.setHead(false);
+        assertFalse(head.isHead());
+        assertEquals('o', head.getSymbol());
+
+        body.setHead(true);
+        assertTrue(body.isHead());
+        assertEquals('H', body.getSymbol());
+    }
+
+
+    /**
+     * Setting a negative coordinate is rejected and the value stays the same.
+     */
+    @Test
+    public void testSetRowColNegative()
+    {
+        assertFalse(head.setRow(-1));
+        assertEquals(2, head.getRow());
+        assertFalse(head.setCol(-1));
+        assertEquals(4, head.getCol());
+    }
 }
