@@ -26,7 +26,7 @@ public class Snake
     {
         segments = new LinkedChain<>();
         NormalSegment head = new NormalSegment(xStart, yStart, true);
-        segments.addFirst(head);
+        segments.add(head);
         this.direction = 'd';
         this.alive = true;
     }
@@ -44,14 +44,14 @@ public class Snake
      */
     public void move(int xNext, int yNext)
     {
-        SnakeSegment oldHead = getHead();
-        if (oldHead instanceof NormalSegment)
+        SnakeSegment newHead = new SnakeSegment(xNext, yNext);
+        segments.add(newHead);
+
+        if (!segments.isEmpty())
         {
-            ((NormalSegment)oldHead).setHead(false);
+            SnakeSegment tail = segments.get(segments.size() - 1);
+            segments.remove(tail);
         }
-        NormalSegment newHead = new NormalSegment(xNext, yNext, true);
-        segments.addFirst(newHead);
-        segments.removeLast();
     }
 
 
@@ -67,12 +67,9 @@ public class Snake
      */
     public void grow(int xNext, int yNext, SnakeSegment segment)
     {
-        SnakeSegment oldHead = getHead();
-        if (oldHead instanceof NormalSegment)
-        {
-            ((NormalSegment)oldHead).setHead(false);
-        }
-        segments.addFirst(segment);
+        segment.setRow(xNext);
+        segment.setCol(yNext);
+        segments.add(segment);
     }
 
 
@@ -85,7 +82,9 @@ public class Snake
     {
         if (!segments.isEmpty())
         {
-            return segments.removeLast();
+            SnakeSegment tail = segments.get(segments.size() - 1);
+            segments.remove(tail);
+            return tail;
         }
         return null;
     }
@@ -102,9 +101,7 @@ public class Snake
         {
             return null;
         }
-        SnakeSegment head = segments.removeFirst();
-        segments.addFirst(head);
-        return head;
+        return segments.get(0);
     }
 
 
@@ -141,21 +138,15 @@ public class Snake
      */
     public boolean atCoord(int x, int y)
     {
-        if (segments.isEmpty())
-        {
-            return false;
-        }
-        boolean found = false;
         for (int i = 0; i < segments.size(); i++)
         {
-            SnakeSegment segment = segments.removeFirst();
-            if (segment.getRow() == x && segment.getColumn() == y)
+            SnakeSegment segment = segments.get(i);
+            if (segment.getRow() == x && segment.getCol() == y)
             {
-                found = true;
+                return true;
             }
-            segments.addLast(segment);
         }
-        return found;
+        return false;
     }
 
 
