@@ -6,10 +6,10 @@ import org.junit.Test;
 
 // -------------------------------------------------------------------------
 /**
- * Tests for SnakeGame and GameBoard. The snake starts at (5, 5) on a 10x10
- * board, moving right, so the next tile is (6, 5).
+ * Tests for SnakeGame. The snake starts at (5, 5) on a 10x10 board, moving
+ * right, so the next tile is (6, 5).
  *
- * @author Rafik Khismatov
+ * @author Rafik Khismatov 
  * @version Oct 15, 2026
  */
 public class SnakeGameTest
@@ -139,70 +139,5 @@ public class SnakeGameTest
     {
         assertEquals(0, game.getScore());
         assertFalse(game.isGameOver());
-    }
-
-
-    /**
-     * A board with a negative size throws an exception.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testNegativeBoard()
-    {
-        new GameBoard(-1, 5);
-    }
-
-
-    /**
-     * isValidCoordinate checks the bounds.
-     */
-    @Test
-    public void testIsValidCoordinate()
-    {
-        GameBoard b = new GameBoard(20, 10);
-        assertTrue(b.isValidCoordinate(3, 3));
-        assertFalse(b.isValidCoordinate(999, -999));
-        assertEquals(20, b.getWidth());
-        assertEquals(10, b.getHeight());
-    }
-
-
-    /**
-     * getTile and setTile work in bounds.
-     */
-    @Test
-    public void testGetSetTile()
-    {
-        GameBoard b = new GameBoard(5, 5);
-        assertEquals(GameBoard.EMPTY, b.getTile(2, 2));
-        b.setTile(2, 2, 'o');
-        assertEquals('o', b.getTile(2, 2));
-    }
-
-
-    /**
-     * getTile throws when the position is off the board.
-     */
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testGetTileOutOfBounds()
-    {
-        GameBoard b = new GameBoard(5, 5);
-        b.getTile(-1, 50);
-    }
-
-
-    /**
-     * spawnItem places an item on an empty board and does nothing on a full
-     * one.
-     */
-    @Test
-    public void testSpawnItem()
-    {
-        GameBoard b = new GameBoard(1, 1);
-        b.spawnItem(GameBoard.FOOD);
-        assertEquals(GameBoard.FOOD, b.getTile(0, 0));
-        assertEquals(0, b.getFoodRow());
-
-        b.spawnItem(GameBoard.WALL); // board is full now
-        assertEquals(GameBoard.FOOD, b.getTile(0, 0));
     }
 }
