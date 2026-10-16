@@ -19,3 +19,25 @@ The stretch goals we will attempt are the power-ups like shield and more, and if
 We will need more tests to handle bad inputs that are with the powerups, like if they are null. We also need to create more situations where the snake could potentially run into itself or have a problem with borders, like for example doing more testing for along the edge of the map and with objects we place on the board.
 
 ## Attribution Table
+
+Snake - Sophie Linton, I wrote all the methods, constructors, fields, and descriptions. 
+SnakeTest - Sophie Linton, I wrote all the test methods and used GenAI to figure out why some of the tests weren't covering all the cases.
+
+SnakeSegment - Sophie Linton, I wrote all the methods, constructors, fields, and descriptions.
+SnakeSegmentTest -
+
+SpecialSegment
+SpecialSegmentTest
+
+NormalSegment - 
+NormalSegmentTest
+
+SnakeGame
+
+LinkedChain
+
+Node
+
+GameBoard
+
+Snake Game
