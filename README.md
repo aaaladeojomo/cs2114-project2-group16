@@ -26,8 +26,8 @@ SnakeTest - Sophie Linton, I wrote all the test methods and used GenAI to figure
 SnakeSegment - Sophie Linton, I wrote all the methods, constructors, fields, and descriptions.
 SnakeSegmentTest -
 
-SpecialSegment
-SpecialSegmentTest
+SpecialSegment - Chris Tricarico, I implemented all the methods, constructors, fields, and added descriptions
+SpecialSegmentTest - Chris Tricarico, I implemented all the test methods and ensured they covered all the methods in the SpecialSegment class
 
 NormalSegment - 
 NormalSegmentTest
