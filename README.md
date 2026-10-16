@@ -36,7 +36,7 @@ SnakeGame
 
 LinkedChain - Ayomide Alade-Ojomo, i implemented the tests for the linkedchain class and made sure that it worked how we would want too for our classes
 
-Node
+
 
 GameBoard
 
