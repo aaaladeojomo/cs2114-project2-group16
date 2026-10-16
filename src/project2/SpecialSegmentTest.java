@@ -1,21 +1,14 @@
 package project2;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
 // -------------------------------------------------------------------------
 /**
-<<<<<<< Updated upstream
  * Test class for the SpecialSegment class. Tests the constructor, ability, and
  * symbol methods.
  * 
-=======
- * Test class for the SpecialSegment class.
- * Tests the constructor, ability, and symbol methods.
- *
->>>>>>> Stashed changes
  * @author Chris Tricarico
  * @version Oct 15, 2026
  */
@@ -62,14 +55,7 @@ public class SpecialSegmentTest
     public void testGetAbility()
     {
         assertEquals("shield", segment.getAbility());
-<<<<<<< Updated upstream
         SpecialSegment speed = new SpecialSegment(2, 3, "speed");
-=======
-
-        SpecialSegment speed =
-            new SpecialSegment(2, 3, "speed");
-
->>>>>>> Stashed changes
         assertEquals("speed", speed.getAbility());
     }
 
@@ -80,17 +66,8 @@ public class SpecialSegmentTest
     @Test
     public void testEmptyAbility()
     {
-<<<<<<< Updated upstream
         SpecialSegment empty = new SpecialSegment(1, 2, "");
         SpecialSegment nullAbility = new SpecialSegment(1, 2, null);
-=======
-        SpecialSegment empty =
-            new SpecialSegment(1, 2, "");
-
-        SpecialSegment nullAbility =
-            new SpecialSegment(1, 2, null);
-
->>>>>>> Stashed changes
         assertEquals("", empty.getAbility());
         assertNull(nullAbility.getAbility());
     }
@@ -107,23 +84,12 @@ public class SpecialSegmentTest
 
 
     /**
-<<<<<<< Updated upstream
      * Tests that the symbol is independent of the segment's ability.
-=======
-     * Tests that the symbol is independent
-     * of the segment's ability.
->>>>>>> Stashed changes
      */
     @Test
     public void testGetSymbolWithDifferentAbility()
     {
-<<<<<<< Updated upstream
         SpecialSegment speed = new SpecialSegment(3, 4, "speed");
-=======
-        SpecialSegment speed =
-            new SpecialSegment(3, 4, "speed");
-
->>>>>>> Stashed changes
         assertEquals('s', speed.getSymbol());
     }
 }
