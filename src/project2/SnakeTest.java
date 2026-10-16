@@ -1,8 +1,11 @@
 package project2;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+//import static org.junit.Assert.*;
+//import org.junit.Before;
+//import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 // -------------------------------------------------------------------------
 /**
@@ -18,7 +21,7 @@ public class SnakeTest
     /**
      * Sets up snake for testing.
      */
-    @Before
+    @BeforeEach
     public void setUp()
     {
         snake = new Snake(3, 3);
@@ -146,6 +149,10 @@ public class SnakeTest
         assertNotNull(head);
         assertEquals(3, head.getRow());
         assertEquals(3, head.getCol());
+        
+        Snake nullSnake = new Snake(4,5);
+        nullSnake.shrink();
+        assertNull(nullSnake.getHead());
     }
 
 

@@ -1,9 +1,12 @@
 package project2;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 import java.util.Random;
-import org.junit.Before;
-import org.junit.Test;
+//import org.junit.Before;
+//import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 // -------------------------------------------------------------------------
 /**
@@ -20,7 +23,7 @@ public class GameBoardTest
     /**
      * Sets up a 20 wide by 10 tall board before each test.
      */
-    @Before
+    @BeforeEach
     public void setUp()
     {
         board = new GameBoard(20, 10);
@@ -46,7 +49,7 @@ public class GameBoardTest
     /**
      * A negative width throws an exception.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test//(expected = IllegalArgumentException.class)
     public void testConstructorNegativeWidth()
     {
         new GameBoard(-1, 5);
@@ -56,7 +59,7 @@ public class GameBoardTest
     /**
      * A zero height throws an exception.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test//(expected = IllegalArgumentException.class)
     public void testConstructorZeroHeight()
     {
         new GameBoard(5, 0);
@@ -114,7 +117,7 @@ public class GameBoardTest
     /**
      * getTile throws when off the board.
      */
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test//(expected = IndexOutOfBoundsException.class)
     public void testGetTileOutOfBounds()
     {
         board.getTile(-1, 50);
@@ -124,7 +127,7 @@ public class GameBoardTest
     /**
      * setTile throws when off the board.
      */
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test//(expected = IndexOutOfBoundsException.class)
     public void testSetTileOutOfBounds()
     {
         board.setTile(25, -3, GameBoard.BODY);

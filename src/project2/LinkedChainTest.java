@@ -1,8 +1,11 @@
 package project2;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+//import static org.junit.Assert.*;
+//import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+//import org.junit.Test;
 
 // -------------------------------------------------------------------------
 /**
@@ -22,7 +25,7 @@ public class LinkedChainTest
      * setting up a linked chain with "hello" and "bye" in it and also an empty
      * linked chain
      */
-    @Before
+    @BeforeEach
     public void setUp()
     {
         linkedchain = new LinkedChain<String>();
