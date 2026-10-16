@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module Project2Snake
-{
-}
