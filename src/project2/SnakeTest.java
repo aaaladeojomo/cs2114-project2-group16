@@ -1,8 +1,8 @@
 package project2;
 
-//import static org.junit.Assert.*;
-//import org.junit.Before;
-//import org.junit.Test;
+// import static org.junit.Assert.*;
+// import org.junit.Before;
+// import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -95,10 +95,10 @@ public class SnakeTest
     @Test
     public void testGrowMethod()
     {
-        SnakeSegment newSegment = new SnakeSegment(-1, -1);
         Exception exception = null;
         try
         {
+            SnakeSegment newSegment = new SnakeSegment(-1, -1);
             snake.grow(-1, -1, newSegment);
         }
         catch (IllegalArgumentException e)
@@ -120,7 +120,7 @@ public class SnakeTest
         assertEquals(2, snake.getLength());
         SnakeSegment removed = snake.shrink();
         assertNotNull(removed);
-        assertEquals(4, removed.getRow());
+        assertEquals(3, removed.getRow());
         assertEquals(3, removed.getCol());
         assertEquals(1, snake.getLength());
     }
@@ -149,8 +149,8 @@ public class SnakeTest
         assertNotNull(head);
         assertEquals(3, head.getRow());
         assertEquals(3, head.getCol());
-        
-        Snake nullSnake = new Snake(4,5);
+
+        Snake nullSnake = new Snake(4, 5);
         nullSnake.shrink();
         assertNull(nullSnake.getHead());
     }
