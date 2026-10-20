@@ -5,7 +5,7 @@ package project2;
  * A special snake segment that has a unique ability. Shown as 's' on the game
  * board.
  * 
- * @author Chris Tricarico
+ * @author Chris Tricarico, Sophie Linton, Ayo Alade-Ojomo, Rafik Khismatov
  * @version Oct 15, 2026
  */
 public class SpecialSegment

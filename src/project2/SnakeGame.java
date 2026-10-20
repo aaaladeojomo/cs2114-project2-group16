@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 // -------------------------------------------------------------------------
 /**
- * in SnakeSegment, getRow() holds the x-coordinate and getCol() holds
- * the y-coordinate.
+ * in SnakeSegment, getRow() holds the x-coordinate and getCol() holds the
+ * y-coordinate.
  *
- * @author Rafik Khismatov
+ * @author Rafik Khismatov, Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
 public class SnakeGame
@@ -19,8 +19,6 @@ public class SnakeGame
     private boolean hasShield;
 
     /**
-     * 
-     *
      * @param width
      *            Width of the board.
      * @param height
@@ -118,8 +116,8 @@ public class SnakeGame
 
 
     /**
-     * Changes the snake's direction if the key is valid. Invalid keys and
-     * 180 degree turns are ignored.
+     * Changes the snake's direction if the key is valid. Invalid keys and 180
+     * degree turns are ignored.
      *
      * @param key
      *            The key the user typed.
@@ -173,8 +171,6 @@ public class SnakeGame
 
 
     /**
-     * 
-     *
      * @param xNext
      *            Next x-coordinate of the head.
      * @param yNext
@@ -199,19 +195,20 @@ public class SnakeGame
         if (tile == GameBoard.FOOD)
         {
             score++;
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
-                true);
+            advance(xNext, yNext, new NormalSegment(xNext, yNext, false), true);
             board.spawnItem(GameBoard.FOOD);
         }
         else if (tile == GameBoard.SHIELD)
         {
             hasShield = true;
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
-                true);
+            advance(xNext, yNext, new NormalSegment(xNext, yNext, false), true);
         }
         else if (tile == GameBoard.SPIKE)
         {
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
+            advance(
+                xNext,
+                yNext,
+                new NormalSegment(xNext, yNext, false),
                 false);
             if (hasShield)
             {
@@ -229,15 +226,17 @@ public class SnakeGame
         }
         else
         {
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
+            advance(
+                xNext,
+                yNext,
+                new NormalSegment(xNext, yNext, false),
                 false);
         }
     }
 
 
     /**
-     * Moves the head to (x, y). Removes the tail unless the snake is
-     * growing.
+     * Moves the head to (x, y). Removes the tail unless the snake is growing.
      */
     private void advance(int x, int y, SnakeSegment newHead, boolean growing)
     {
@@ -317,8 +316,8 @@ public class SnakeGame
         while (running)
         {
             System.out.println(board);
-            System.out.println(
-                "Score: " + score + (hasShield ? "   [SHIELD]" : ""));
+            System.out
+                .println("Score: " + score + (hasShield ? "   [SHIELD]" : ""));
             System.out.print("Move (w/a/s/d, q to quit): ");
 
             if (!in.hasNextLine())

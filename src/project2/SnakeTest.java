@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Testing the methods of the Snake class.s
  * 
- * @author sjlin
+ * @author Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo, Rafik Khismatov
  * @version Oct 15, 2026
  */
 public class SnakeTest

@@ -1,8 +1,8 @@
 package project2;
 
-//import static org.junit.Assert.*;
-//import org.junit.Before;
-//import org.junit.Test;
+// import static org.junit.Assert.*;
+// import org.junit.Before;
+// import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test class for the SpecialSegment class. Tests the constructor, ability, and
  * symbol methods.
  * 
- * @author Chris Tricarico
+ * @author Chris Tricarico, Sophie Linton, Ayo Alade-Ojomo, Rafik Khismatov
  * @version Oct 15, 2026
  */
 public class SpecialSegmentTest
@@ -44,10 +44,20 @@ public class SpecialSegmentTest
     /**
      * Tests that negative coordinates throw an exception.
      */
-    @Test //(expected = IllegalArgumentException.class)
+    @SuppressWarnings("unused")
+    @Test
     public void testInvalidConstructor()
     {
-        new SpecialSegment(-1, 5, "shield");
+        Exception exception = null;
+        try
+        {
+            new SpecialSegment(-1, 10, "shield");
+        }
+        catch (IllegalArgumentException e)
+        {
+            exception = e;
+        }
+        assertNotNull(exception);
     }
 
 

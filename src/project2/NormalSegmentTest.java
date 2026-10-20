@@ -11,10 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests for NormalSegment.
  *
- * @author Rafik Khismatov
+ * @author Rafik Khismatov, Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
-public class NormalSegmentTest {
+public class NormalSegmentTest
+{
     private NormalSegment head;
     private NormalSegment body;
 
@@ -22,7 +23,8 @@ public class NormalSegmentTest {
      * Creates a head segment and a body segment before each test.
      */
     @BeforeEach
-    public void setUp() {
+    public void setUp()
+    {
         head = new NormalSegment(2, 4, true);
         body = new NormalSegment(3, 4, false);
     }
@@ -32,7 +34,8 @@ public class NormalSegmentTest {
      * The constructor stores the coordinates.
      */
     @Test
-    public void testConstructor() {
+    public void testConstructor()
+    {
         assertEquals(2, head.getRow());
         assertEquals(4, head.getCol());
     }
@@ -42,12 +45,15 @@ public class NormalSegmentTest {
      * Negative coordinates throw an exception.
      */
     @Test // (expected = IllegalArgumentException.class)
-    public void testConstructorNegative() {
+    public void testConstructorNegative()
+    {
         Exception exception = null;
-        try {
+        try
+        {
             new NormalSegment(-2, 4, false);
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException e)
+        {
             exception = e;
         }
         assertNotNull(exception);
@@ -58,7 +64,8 @@ public class NormalSegmentTest {
      * The head shows 'H' and a body segment shows 'o'.
      */
     @Test
-    public void testGetSymbol() {
+    public void testGetSymbol()
+    {
         assertEquals('H', head.getSymbol());
         assertEquals('o', body.getSymbol());
     }
@@ -68,7 +75,8 @@ public class NormalSegmentTest {
      * isHead returns the head flag.
      */
     @Test
-    public void testIsHead() {
+    public void testIsHead()
+    {
         assertTrue(head.isHead());
         assertFalse(body.isHead());
     }
@@ -78,7 +86,8 @@ public class NormalSegmentTest {
      * setHead changes the flag and the symbol.
      */
     @Test
-    public void testSetHead() {
+    public void testSetHead()
+    {
         head.setHead(false);
         assertFalse(head.isHead());
         assertEquals('o', head.getSymbol());
@@ -93,7 +102,8 @@ public class NormalSegmentTest {
      * Setting a negative coordinate is rejected and the value stays the same.
      */
     @Test
-    public void testSetRowColNegative() {
+    public void testSetRowColNegative()
+    {
         assertFalse(head.setRow(-1));
         assertEquals(2, head.getRow());
         assertFalse(head.setCol(-1));

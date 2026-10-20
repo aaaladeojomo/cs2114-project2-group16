@@ -1,8 +1,8 @@
 package project2;
 
-//import static org.junit.Assert.*;
-//import org.junit.Before;
-//import org.junit.Test;
+// import static org.junit.Assert.*;
+// import org.junit.Before;
+// import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Tests for SnakeGame. The snake starts at (5, 5) on a 10x10 board, moving
  * right, so the next tile is (6, 5).
  *
- * @author Rafik Khismatov 
+ * @author Rafik Khismatov, Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
 public class SnakeGameTest
@@ -118,6 +118,16 @@ public class SnakeGameTest
     {
         assertFalse(game.isDirectionValid('a'));
         assertTrue(game.isDirectionValid('w'));
+        game.processInput('w');
+        assertFalse(game.isDirectionValid('s'));
+        assertTrue(game.isDirectionValid('d'));
+        game.processInput('a');
+        assertFalse(game.isDirectionValid('d'));
+        assertTrue(game.isDirectionValid('s'));
+        game.processInput('s');
+        assertFalse(game.isDirectionValid('w'));
+        assertTrue(game.isDirectionValid('a'));
+
     }
 
 
@@ -142,5 +152,48 @@ public class SnakeGameTest
     {
         assertEquals(0, game.getScore());
         assertFalse(game.isGameOver());
+    }
+
+
+    /**
+     * Tests the play method.
+     */
+    @Test
+    public void testPlay()
+    {
+        String simulatedInput = "\ns\nx\nq\n";
+        System
+            .setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
+
+        SnakeGame consoleGame = new SnakeGame(3, 3);
+        consoleGame.play();
+
+        assertTrue(consoleGame.isGameOver());
+    }
+
+
+    /**
+     * Tests the main method.
+     */
+    @Test
+    public void testMain()
+    {
+        String simulatedInput = "q\n";
+        System
+            .setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
+        SnakeGame.main(new String[0]);
+        assertTrue(true);
+    }
+
+
+    /**
+     * Test hitting a special tile.
+     */
+    @Test
+    public void testHitBadTile()
+    {
+        game.getBoard().setTile(6, 5, GameBoard.SPECIAL);
+        game.update();
+        assertTrue(game.isGameOver());
     }
 }
