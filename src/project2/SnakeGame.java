@@ -347,18 +347,27 @@ public class SnakeGame
             }
             System.out.println(board);
             System.out.println("Game over! Final score: " + score);
-            System.out.print("Play again? (y/n): ");
-            if (!in.hasNextLine())
+            while (true)
             {
-                break;
-            }
-            String response = in.nextLine().trim();
-            if (!response.equalsIgnoreCase("y"))
-            {
-                break;
+                System.out.print("Play again? (y/n): ");
+                if (!in.hasNextLine())
+                {
+                    return;
+                }
+
+                String response = in.nextLine().trim();
+
+                if (response.equalsIgnoreCase("y"))
+                {
+                    break;
+                }
+                else if (response.equalsIgnoreCase("n"))
+                {
+                    System.out.println("Thanks for playing Dizzy Snakes!");
+                    return;
+                }
             }
         }
-        System.out.println("Thanks for playing Dizzy Snakes!");
     }
 
 
