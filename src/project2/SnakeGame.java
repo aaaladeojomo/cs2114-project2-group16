@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 // -------------------------------------------------------------------------
 /**
- * in SnakeSegment, getRow() holds the x-coordinate and getCol() holds
- * the y-coordinate.
+ * in SnakeSegment, getRow() holds the x-coordinate and getCol() holds the
+ * y-coordinate.
  *
- * @author Rafik Khismatov
+ * @author Rafik Khismatov, Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
 public class SnakeGame
@@ -19,8 +19,6 @@ public class SnakeGame
     private boolean hasShield;
 
     /**
-     * 
-     *
      * @param width
      *            Width of the board.
      * @param height
@@ -118,23 +116,26 @@ public class SnakeGame
 
 
     /**
-     * Changes the snake's direction if the key is valid. Invalid keys and
-     * 180 degree turns are ignored.
+     * Changes the snake's direction if the key is valid. Invalid keys and 180
+     * degree turns are ignored.
      *
      * @param key
      *            The key the user typed.
+     * @return If the snake moved or not
      */
-    public void processInput(char key)
+    public boolean processInput(char key)
     {
         key = Character.toLowerCase(key);
         if (key != 'w' && key != 'a' && key != 's' && key != 'd')
         {
-            return;
+            return false;
         }
         if (isDirectionValid(key))
         {
             snake.setDirection(key);
+            return true;
         }
+        return false;
     }
 
 
@@ -173,8 +174,6 @@ public class SnakeGame
 
 
     /**
-     * 
-     *
      * @param xNext
      *            Next x-coordinate of the head.
      * @param yNext
@@ -199,19 +198,20 @@ public class SnakeGame
         if (tile == GameBoard.FOOD)
         {
             score++;
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
-                true);
+            advance(xNext, yNext, new NormalSegment(xNext, yNext, false), true);
             board.spawnItem(GameBoard.FOOD);
         }
         else if (tile == GameBoard.SHIELD)
         {
             hasShield = true;
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
-                true);
+            advance(xNext, yNext, new NormalSegment(xNext, yNext, false), true);
         }
         else if (tile == GameBoard.SPIKE)
         {
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
+            advance(
+                xNext,
+                yNext,
+                new NormalSegment(xNext, yNext, false),
                 false);
             if (hasShield)
             {
@@ -229,15 +229,17 @@ public class SnakeGame
         }
         else
         {
-            advance(xNext, yNext, new NormalSegment(xNext, yNext, false),
+            advance(
+                xNext,
+                yNext,
+                new NormalSegment(xNext, yNext, false),
                 false);
         }
     }
 
 
     /**
-     * Moves the head to (x, y). Removes the tail unless the snake is
-     * growing.
+     * Moves the head to (x, y). Removes the tail unless the snake is growing.
      */
     private void advance(int x, int y, SnakeSegment newHead, boolean growing)
     {
@@ -314,30 +316,58 @@ public class SnakeGame
     public void play()
     {
         Scanner in = new Scanner(System.in);
-        while (running)
+        while (true)
         {
-            System.out.println(board);
-            System.out.println(
-                "Score: " + score + (hasShield ? "   [SHIELD]" : ""));
-            System.out.print("Move (w/a/s/d, q to quit): ");
+            resetGame();
+            while (running)
+            {
+                System.out.println(board);
+                System.out.println(
+                    "Score: " + score + (hasShield ? "   [SHIELD]" : ""));
+                System.out.print("Move (w/a/s/d, q to quit): ");
 
-            if (!in.hasNextLine())
-            {
-                break;
+                if (!in.hasNextLine())
+                {
+                    return;
+                }
+                String line = in.nextLine().trim();
+
+                if (line.equalsIgnoreCase("q"))
+                {
+                    return;
+                }
+
+                if (!line.isEmpty())
+                {
+                    if (processInput(line.charAt(0)))
+                    {
+                        update();
+                    }
+                }
             }
-            String line = in.nextLine().trim();
-            if (line.equalsIgnoreCase("q"))
+            System.out.println(board);
+            System.out.println("Game over! Final score: " + score);
+            while (true)
             {
-                break;
+                System.out.print("Play again? (y/n): ");
+                if (!in.hasNextLine())
+                {
+                    return;
+                }
+
+                String response = in.nextLine().trim();
+
+                if (response.equalsIgnoreCase("y"))
+                {
+                    break;
+                }
+                else if (response.equalsIgnoreCase("n"))
+                {
+                    System.out.println("Thanks for playing Dizzy Snakes!");
+                    return;
+                }
             }
-            if (!line.isEmpty())
-            {
-                processInput(line.charAt(0));
-            }
-            update();
         }
-        System.out.println(board);
-        System.out.println("Game over! Final score: " + score);
     }
 
 
@@ -350,5 +380,27 @@ public class SnakeGame
     public static void main(String[] args)
     {
         new SnakeGame(20, 10).play();
+    }
+
+
+    /**
+     * Resets the game after round ends.
+     */
+    private void resetGame()
+    {
+        int width = board.getWidth();
+        int height = board.getHeight();
+        this.board = new GameBoard(width, height);
+        int startX = width / 2;
+        int startY = height / 2;
+        this.snake = new Snake(startX, startY);
+        this.board.setTile(startX, startY, GameBoard.HEAD);
+        this.score = 0;
+        this.hasShield = false;
+        this.running = true;
+        this.board.spawnItem(GameBoard.FOOD);
+        this.board.spawnItem(GameBoard.SPIKE);
+        this.board.spawnItem(GameBoard.WALL);
+        this.board.spawnItem(GameBoard.SHIELD);
     }
 }

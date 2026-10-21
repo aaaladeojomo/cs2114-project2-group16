@@ -2,10 +2,10 @@ package project2;
 
 // -------------------------------------------------------------------------
 /**
- * A normal snake segment. Shown as 'H' if it is the head, 'o' if it is
- * part of the body.
+ * A normal snake segment. Shown as 'H' if it is the head, 'o' if it is part of
+ * the body.
  *
- * @author Rafik Khismatov
+ * @author Rafik Khismatov, Chris Tricarico, Sophie Linton, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
 public class NormalSegment

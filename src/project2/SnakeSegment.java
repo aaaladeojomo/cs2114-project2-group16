@@ -6,7 +6,7 @@ package project2;
  * place on the map. It sets up a method for the symbols that will be overridden
  * in the two subclasses.
  * 
- * @author sjlin
+ * @author Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo, Rafik Khismatov
  * @version Oct 15, 2026
  */
 public class SnakeSegment

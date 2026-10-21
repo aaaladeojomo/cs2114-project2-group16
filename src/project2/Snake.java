@@ -5,7 +5,7 @@ package project2;
  * Creates a Snake object and the methods that allow it to move around the map,
  * shrink, and grow in size.
  * 
- * @author sjlin
+ * @author Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo, Rafik Khismatov
  * @version Oct 15, 2026
  */
 public class Snake

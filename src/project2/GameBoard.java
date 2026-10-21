@@ -3,9 +3,11 @@ package project2;
 import java.util.Random;
 
 // -------------------------------------------------------------------------
-/* stores the game’s text grid as a 2D char  spawn items on random empty 
- * tiles, and print the board.
- * @author Rafik Khismatov
+/**
+ * stores the game’s text grid as a 2D char spawn items on random empty tiles,
+ * and print the board.
+ * 
+ * @author Rafik Khismatov, Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
 public class GameBoard
@@ -180,8 +182,7 @@ public class GameBoard
 
 
     /**
-     * Places an item on a random empty tile. Does nothing if the board is
-     * full.
+     * Places an item on a random empty tile. Does nothing if the board is full.
      *
      * @param tile
      *            The item symbol to place.

@@ -1,16 +1,19 @@
 package project2;
 
-import static org.junit.Assert.*;
+// import static org.junit.Assert.*;
 import java.util.Random;
-import org.junit.Before;
-import org.junit.Test;
+// import org.junit.Before;
+// import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 // -------------------------------------------------------------------------
 /**
- * Tests for GameBoard. Each public method has a normal case and a
- * bad-input case.
+ * Tests for GameBoard. Each public method has a normal case and a bad-input
+ * case.
  *
- * @author Rafik Khismatov 
+ * @author Rafik Khismatov, Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
 public class GameBoardTest
@@ -20,7 +23,7 @@ public class GameBoardTest
     /**
      * Sets up a 20 wide by 10 tall board before each test.
      */
-    @Before
+    @BeforeEach
     public void setUp()
     {
         board = new GameBoard(20, 10);
@@ -46,20 +49,40 @@ public class GameBoardTest
     /**
      * A negative width throws an exception.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @SuppressWarnings("unused")
+    @Test // (expected = IllegalArgumentException.class)
     public void testConstructorNegativeWidth()
     {
-        new GameBoard(-1, 5);
+        Exception exception = null;
+        try
+        {
+            new GameBoard(-1, 5);
+        }
+        catch (IllegalArgumentException e)
+        {
+            exception = e;
+        }
+        assertNotNull(exception);
     }
 
 
     /**
      * A zero height throws an exception.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @SuppressWarnings("unused")
+    @Test // (expected = IllegalArgumentException.class)
     public void testConstructorZeroHeight()
     {
-        new GameBoard(5, 0);
+        Exception exception = null;
+        try
+        {
+            new GameBoard(5, 0);
+        }
+        catch (IllegalArgumentException e)
+        {
+            exception = e;
+        }
+        assertNotNull(exception);
     }
 
 
@@ -83,6 +106,7 @@ public class GameBoardTest
         assertTrue(board.isValidCoordinate(3, 3));
         assertTrue(board.isValidCoordinate(0, 0));
         assertTrue(board.isValidCoordinate(19, 9));
+        assertFalse(board.isValidCoordinate(0, -1));
     }
 
 
@@ -114,20 +138,38 @@ public class GameBoardTest
     /**
      * getTile throws when off the board.
      */
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test // (expected = IndexOutOfBoundsException.class)
     public void testGetTileOutOfBounds()
     {
-        board.getTile(-1, 50);
+        Exception exception = null;
+        try
+        {
+            board.getTile(-1, 50);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            exception = e;
+        }
+        assertNotNull(exception);
     }
 
 
     /**
      * setTile throws when off the board.
      */
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test // (expected = IndexOutOfBoundsException.class)
     public void testSetTileOutOfBounds()
     {
-        board.setTile(25, -3, GameBoard.BODY);
+        Exception exception = null;
+        try
+        {
+            board.setTile(25, -3, GameBoard.BODY);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            exception = e;
+        }
+        assertNotNull(exception);
     }
 
 

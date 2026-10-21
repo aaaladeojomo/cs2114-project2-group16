@@ -1,14 +1,17 @@
 package project2;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+// import static org.junit.Assert.*;
+// import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+// import org.junit.Test;
 
 // -------------------------------------------------------------------------
 /**
  * Where we test the linkedchain class
  * 
- * @author modes
+ * @author Ayo Alade-Ojomo, Sophie Linton, Chris Tricarico, Rafik Khismatov
  * @version Oct 15, 2026
  */
 public class LinkedChainTest
@@ -22,7 +25,7 @@ public class LinkedChainTest
      * setting up a linked chain with "hello" and "bye" in it and also an empty
      * linked chain
      */
-    @Before
+    @BeforeEach
     public void setUp()
     {
         linkedchain = new LinkedChain<String>();
@@ -124,9 +127,11 @@ public class LinkedChainTest
      * test that we can get return a value based off its index in our linked
      * chain
      */
+    @Test
     public void testGet()
     {
-        assertEquals(linkedchain.get(1), "bye");
+        assertEquals("bye", linkedchain.get(0));
+        assertEquals("hello", linkedchain.get(1));
 
         Exception exception = null;
         try
@@ -146,6 +151,7 @@ public class LinkedChainTest
     /**
      * test if our linkedchain contains a value
      */
+    @Test
     public void testContains()
     {
 
@@ -159,6 +165,7 @@ public class LinkedChainTest
     /**
      * test that we can count how many times a value appears in our linked chain
      */
+    @Test
     public void testCount()
     {
         assertEquals(0, linkedchain.count(null));
@@ -176,6 +183,7 @@ public class LinkedChainTest
     /**
      * test how big our linked chain is
      */
+    @Test
     public void testSize()
     {
         assertEquals(0, empty.size());
@@ -188,6 +196,7 @@ public class LinkedChainTest
     /**
      * test that we can return whether our linked chain is empty or not
      */
+    @Test
     public void testIsEmpty()
     {
 
@@ -201,6 +210,7 @@ public class LinkedChainTest
     /**
      * test that we can return our linked chain as a string
      */
+    @Test
     public void testToString()
     {
         assertEquals("[]", empty.toString());
@@ -210,7 +220,7 @@ public class LinkedChainTest
         empty.add("A");
         empty.add("B");
 
-        assertEquals("[A, B]", empty.toString());
+        assertEquals("[B, A]", empty.toString());
     }
 
 
@@ -218,6 +228,7 @@ public class LinkedChainTest
     /**
      * test that we can return our linked chain as an array
      */
+    @Test
     public void testToArray()
     {
         String[] arr = new String[0];
@@ -225,7 +236,29 @@ public class LinkedChainTest
 
         String[] arr2 = new String[2];
         linkedchain.toArray(arr2);
-        assertArrayEquals(new String[] { "bye, hello" }, arr2);
+        assertArrayEquals(new String[] { "bye", "hello" }, arr2);
+
+        Exception e = null;
+        try
+        {
+            linkedchain.toArray(null);
+        }
+        catch (IllegalArgumentException ex)
+        {
+            e = ex;
+        }
+        assertNotNull(e);
+
+        Exception e2 = null;
+        try
+        {
+            linkedchain.toArray(new String[1]);
+        }
+        catch (IllegalArgumentException ex2)
+        {
+            e2 = ex2;
+        }
+        assertNotNull(e2);
 
     }
 

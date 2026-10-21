@@ -1,14 +1,17 @@
 package project2;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+// import static org.junit.Assert.*;
+// import org.junit.Before;
+// import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 // -------------------------------------------------------------------------
 /**
  * Tests for NormalSegment.
  *
- * @author Rafik Khismatov
+ * @author Rafik Khismatov, Sophie Linton, Chris Tricarico, Ayo Alade-Ojomo
  * @version Oct 15, 2026
  */
 public class NormalSegmentTest
@@ -19,7 +22,7 @@ public class NormalSegmentTest
     /**
      * Creates a head segment and a body segment before each test.
      */
-    @Before
+    @BeforeEach
     public void setUp()
     {
         head = new NormalSegment(2, 4, true);
@@ -41,10 +44,20 @@ public class NormalSegmentTest
     /**
      * Negative coordinates throw an exception.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @SuppressWarnings("unused")
+    @Test // (expected = IllegalArgumentException.class)
     public void testConstructorNegative()
     {
-        new NormalSegment(-2, 4, false);
+        Exception exception = null;
+        try
+        {
+            new NormalSegment(-2, 4, false);
+        }
+        catch (IllegalArgumentException e)
+        {
+            exception = e;
+        }
+        assertNotNull(exception);
     }
 
 
