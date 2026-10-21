@@ -44,6 +44,7 @@ public class NormalSegmentTest
     /**
      * Negative coordinates throw an exception.
      */
+    @SuppressWarnings("unused")
     @Test // (expected = IllegalArgumentException.class)
     public void testConstructorNegative()
     {

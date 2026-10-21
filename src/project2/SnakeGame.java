@@ -121,18 +121,21 @@ public class SnakeGame
      *
      * @param key
      *            The key the user typed.
+     * @return If the snake moved or not
      */
-    public void processInput(char key)
+    public boolean processInput(char key)
     {
         key = Character.toLowerCase(key);
         if (key != 'w' && key != 'a' && key != 's' && key != 'd')
         {
-            return;
+            return false;
         }
         if (isDirectionValid(key))
         {
             snake.setDirection(key);
+            return true;
         }
+        return false;
     }
 
 
@@ -313,30 +316,49 @@ public class SnakeGame
     public void play()
     {
         Scanner in = new Scanner(System.in);
-        while (running)
+        while (true)
         {
-            System.out.println(board);
-            System.out
-                .println("Score: " + score + (hasShield ? "   [SHIELD]" : ""));
-            System.out.print("Move (w/a/s/d, q to quit): ");
+            resetGame();
+            while (running)
+            {
+                System.out.println(board);
+                System.out.println(
+                    "Score: " + score + (hasShield ? "   [SHIELD]" : ""));
+                System.out.print("Move (w/a/s/d, q to quit): ");
 
+                if (!in.hasNextLine())
+                {
+                    return;
+                }
+                String line = in.nextLine().trim();
+
+                if (line.equalsIgnoreCase("q"))
+                {
+                    return;
+                }
+
+                if (!line.isEmpty())
+                {
+                    if (processInput(line.charAt(0)))
+                    {
+                        update();
+                    }
+                }
+            }
+            System.out.println(board);
+            System.out.println("Game over! Final score: " + score);
+            System.out.print("Play again? (y/n): ");
             if (!in.hasNextLine())
             {
                 break;
             }
-            String line = in.nextLine().trim();
-            if (line.equalsIgnoreCase("q"))
+            String response = in.nextLine().trim();
+            if (!response.equalsIgnoreCase("y"))
             {
                 break;
             }
-            if (!line.isEmpty())
-            {
-                processInput(line.charAt(0));
-            }
-            update();
         }
-        System.out.println(board);
-        System.out.println("Game over! Final score: " + score);
+        System.out.println("Thanks for playing Dizzy Snakes!");
     }
 
 
@@ -349,5 +371,27 @@ public class SnakeGame
     public static void main(String[] args)
     {
         new SnakeGame(20, 10).play();
+    }
+
+
+    /**
+     * Resets the game after round ends.
+     */
+    private void resetGame()
+    {
+        int width = board.getWidth();
+        int height = board.getHeight();
+        this.board = new GameBoard(width, height);
+        int startX = width / 2;
+        int startY = height / 2;
+        this.snake = new Snake(startX, startY);
+        this.board.setTile(startX, startY, GameBoard.HEAD);
+        this.score = 0;
+        this.hasShield = false;
+        this.running = true;
+        this.board.spawnItem(GameBoard.FOOD);
+        this.board.spawnItem(GameBoard.SPIKE);
+        this.board.spawnItem(GameBoard.WALL);
+        this.board.spawnItem(GameBoard.SHIELD);
     }
 }
