@@ -105,13 +105,13 @@ public class SnakeGame
      *            The requested direction ('w', 'a', 's', or 'd').
      * @return True if the snake may turn that way.
      */
-    public boolean isDirectionValid(char input)
+    public boolean isDirectionValid(String input)
     {
-        char current = snake.getDirection();
-        return !((current == 'w' && input == 's')
-            || (current == 's' && input == 'w')
-            || (current == 'a' && input == 'd')
-            || (current == 'd' && input == 'a'));
+        String current = snake.getDirection();
+        return !((current == "w" && input == "s")
+            || (current == "s" && input == "w")
+            || (current == "a" && input == "d")
+            || (current == "d" && input == "a"));
     }
 
 
@@ -123,17 +123,33 @@ public class SnakeGame
      *            The key the user typed.
      * @return If the snake moved or not
      */
+<<<<<<< Updated upstream
     public boolean processInput(char key)
+=======
+    public void processInput(String key)
+>>>>>>> Stashed changes
     {
-        key = Character.toLowerCase(key);
-        if (key != 'w' && key != 'a' && key != 's' && key != 'd')
+        // key = Character.toLowerCase(key);
+        String str = key.toLowerCase();
+        if (!str.equals("w") && !str.equals("a") && !str.equals("s")
+            && !str.equals("d"))
         {
+<<<<<<< Updated upstream
             return false;
+=======
+            System.out.println("This is not a valid input!");
+            return;
+
+>>>>>>> Stashed changes
         }
-        if (isDirectionValid(key))
+        if (isDirectionValid(str))
         {
+<<<<<<< Updated upstream
             snake.setDirection(key);
             return true;
+=======
+            snake.setDirection(str);
+>>>>>>> Stashed changes
         }
         return false;
     }
@@ -154,16 +170,16 @@ public class SnakeGame
 
         switch (snake.getDirection())
         {
-            case 'w':
+            case "w":
                 nextY--;
                 break;
-            case 's':
+            case "s":
                 nextY++;
                 break;
-            case 'a':
+            case "a":
                 nextX--;
                 break;
-            case 'd':
+            case "d":
                 nextX++;
                 break;
             default:
@@ -315,7 +331,9 @@ public class SnakeGame
      */
     public void play()
     {
+
         Scanner in = new Scanner(System.in);
+<<<<<<< Updated upstream
         while (true)
         {
             resetGame();
@@ -366,6 +384,48 @@ public class SnakeGame
                     System.out.println("Thanks for playing Dizzy Snakes!");
                     return;
                 }
+=======
+
+        System.out.println("Welcome to Snake!");
+        System.out.println("press Enter to Start!");
+        in.nextLine();
+        while (running)
+        {
+            System.out.println(board);
+            System.out
+                .println("Score: " + score + (hasShield ? "   [SHIELD]" : ""));
+            System.out.print("Move (w/a/s/d, q to quit): ");
+
+            try
+            {
+                if (System.in.available() > 0)
+                {
+                    String line = in.nextLine().trim();
+                    if (line.equalsIgnoreCase("q"))
+                    {
+                        break;
+                    }
+                    if (!line.isEmpty())
+                    {
+                        processInput(line);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // ignore
+            }
+
+            update();
+
+            try
+            {
+                Thread.sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                // ignore
+>>>>>>> Stashed changes
             }
         }
     }
@@ -379,7 +439,38 @@ public class SnakeGame
      */
     public static void main(String[] args)
     {
-        new SnakeGame(20, 10).play();
+        Scanner in = new Scanner(System.in);
+
+        while (true)
+        {
+            SnakeGame game = new SnakeGame(20, 10);
+            game.play();
+
+            String answer = "";
+            while (true)
+            {
+
+                System.out.println("Play again (y/n): ");
+                answer = in.nextLine().trim();
+
+                if (answer.equalsIgnoreCase("y"))
+                {
+
+                    break;
+                }
+                else if (answer.equalsIgnoreCase("n"))
+                {
+                    System.out.println("Goodbye!");
+                    return;
+                }
+                else
+                {
+                    System.out.println(
+                        "That is not a valid choice, please enter either 'y' or 'n' ");
+                }
+            }
+        }
+        // new SnakeGame(20, 10).play();
     }
 
 

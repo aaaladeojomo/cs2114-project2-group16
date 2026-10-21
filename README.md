@@ -40,4 +40,4 @@ LinkedChain - Ayomide Alade-Ojomo, i implemented the tests for the linkedchain c
 
 GameBoard
 
-Snake Game - Ayomide Alade-Ojomo, I only implemented the tests for snake.java 
+Snake Game - 

@@ -11,7 +11,7 @@ package project2;
 public class Snake
 {
     private LinkedChain<SnakeSegment> segments;
-    private char direction;
+    private String direction;
     private boolean alive;
 
     /**
@@ -27,7 +27,7 @@ public class Snake
         segments = new LinkedChain<>();
         NormalSegment head = new NormalSegment(xStart, yStart, true);
         segments.add(head);
-        this.direction = 'd';
+        this.direction = "d";
         this.alive = true;
     }
 
@@ -178,7 +178,7 @@ public class Snake
      * 
      * @return Returns the direction set.
      */
-    public char getDirection()
+    public String getDirection()
     {
         return direction;
     }
@@ -190,7 +190,7 @@ public class Snake
      * @param direction
      *            The given direction.
      */
-    public void setDirection(char direction)
+    public void setDirection(String direction)
     {
         this.direction = direction;
     }
