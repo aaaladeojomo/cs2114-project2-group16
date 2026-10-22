@@ -116,17 +116,17 @@ public class SnakeGameTest
     @Test
     public void testIsDirectionValid()
     {
-        assertFalse(game.isDirectionValid('a'));
-        assertTrue(game.isDirectionValid('w'));
-        game.processInput('w');
-        assertFalse(game.isDirectionValid('s'));
-        assertTrue(game.isDirectionValid('d'));
-        game.processInput('a');
-        assertFalse(game.isDirectionValid('d'));
-        assertTrue(game.isDirectionValid('s'));
-        game.processInput('s');
-        assertFalse(game.isDirectionValid('w'));
-        assertTrue(game.isDirectionValid('a'));
+        assertFalse(game.isDirectionValid("a"));
+        assertTrue(game.isDirectionValid("w"));
+        game.processInput("w");
+        assertFalse(game.isDirectionValid("s"));
+        assertTrue(game.isDirectionValid("d"));
+        game.processInput("a");
+        assertFalse(game.isDirectionValid("d"));
+        assertTrue(game.isDirectionValid("s"));
+        game.processInput("s");
+        assertFalse(game.isDirectionValid("w"));
+        assertTrue(game.isDirectionValid("a"));
 
     }
 
@@ -137,10 +137,10 @@ public class SnakeGameTest
     @Test
     public void testProcessInvalidInput()
     {
-        game.processInput('x');
-        assertEquals('d', game.getSnake().getDirection());
-        game.processInput('w');
-        assertEquals('w', game.getSnake().getDirection());
+        game.processInput("x");
+        assertEquals("d", game.getSnake().getDirection());
+        game.processInput("w");
+        assertEquals("w", game.getSnake().getDirection());
     }
 
 

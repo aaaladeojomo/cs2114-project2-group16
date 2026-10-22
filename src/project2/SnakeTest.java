@@ -209,9 +209,9 @@ public class SnakeTest
     public void testDirection()
     {
         assertEquals('d', snake.getDirection());
-        snake.setDirection('w');
+        snake.setDirection("w");
         assertEquals('w', snake.getDirection());
-        snake.setDirection('a');
+        snake.setDirection("a");
         assertEquals('a', snake.getDirection());
     }
 

@@ -187,12 +187,12 @@ public class Snake
     /**
      * Allows to set a possible direction.
      * 
-     * @param direction
+     * @param string
      *            The given direction.
      */
-    public void setDirection(String direction)
+    public void setDirection(String string)
     {
-        this.direction = direction;
+        this.direction = string;
     }
 
 }

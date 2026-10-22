@@ -17,6 +17,14 @@ public class SnakeGame
     private int score;
     private boolean hasShield;
 
+    /**
+     * SnakeGame constructor.
+     * 
+     * @param width
+     *            Width of the game board
+     * @param height
+     *            Height of the game board
+     */
     public SnakeGame(int width, int height)
     {
         board = new GameBoard(width, height);
@@ -36,30 +44,55 @@ public class SnakeGame
     }
 
 
+    /**
+     * Checks if the game is running
+     * 
+     * @return if game is running
+     */
     public boolean isGameOver()
     {
         return !running;
     }
 
 
+    /**
+     * Gets the current score.
+     * 
+     * @return The number of the score
+     */
     public int getScore()
     {
         return score;
     }
 
 
+    /**
+     * Checks if user collected shield
+     * 
+     * @return If the shield is possessed
+     */
     public boolean hasShield()
     {
         return hasShield;
     }
 
 
+    /**
+     * Gets the current board
+     * 
+     * @return Returns the game board
+     */
     public GameBoard getBoard()
     {
         return board;
     }
 
 
+    /**
+     * Gets the whole snake.
+     * 
+     * @return The snake chain
+     */
     public Snake getSnake()
     {
         return snake;
@@ -68,41 +101,55 @@ public class SnakeGame
 
     /**
      * Checks that a direction is not a 180 degree turn.
+     * 
+     * @return If the direction is valid or not.
+     * @param c
+     *            character input
      */
-    public boolean isDirectionValid(String input)
+    public boolean isDirectionValid(String c)
     {
         String current = snake.getDirection();
-        return !((current.equals("w") && input.equals("s"))
-            || (current.equals("s") && input.equals("w"))
-            || (current.equals("a") && input.equals("d"))
-            || (current.equals("d") && input.equals("a")));
+        return !((current.equals("w") && c.equals("s"))
+            || (current.equals("s") && c.equals("w"))
+            || (current.equals("a") && c.equals("w"))
+            || (current.equals("d") && c.equals("a")));
     }
 
 
     /**
      * Your stashed version: processInput(char key) returning boolean.
+     * 
+     * @param key
+     *            Key inputed by user.
+     * @return If the key input is valid or not.
      */
-    public boolean processInput(char key)
+    public boolean processInput(String key)
     {
-        key = Character.toLowerCase(key);
-
-        if (key != 'w' && key != 'a' && key != 's' && key != 'd')
+        if (key == null)
         {
             return false;
         }
 
-        String dir = String.valueOf(key);
+        String lowerKey = key.toLowerCase();
 
-        if (isDirectionValid(dir))
+        if (!lowerKey.equals("w") && !lowerKey.equals("a")
+            && !lowerKey.equals("s") && !lowerKey.equals("d"))
         {
-            snake.setDirection(dir);
+            return false;
+        }
+        if (isDirectionValid(lowerKey))
+        {
+            snake.setDirection(lowerKey);
             return true;
         }
-
         return false;
     }
 
 
+    /**
+     * Updates the snakes direction.
+     */
+    @SuppressWarnings("incomplete-switch")
     public void update()
     {
         if (!running)
@@ -134,6 +181,14 @@ public class SnakeGame
     }
 
 
+    /**
+     * Handles when the snake collides with objects or walls.
+     * 
+     * @param xNext
+     *            Next X Value
+     * @param yNext
+     *            Next Y value
+     */
     public void collision(int xNext, int yNext)
     {
         if (!board.isValidCoordinate(xNext, yNext))
@@ -195,6 +250,18 @@ public class SnakeGame
     }
 
 
+    /**
+     * Moves the snake forward
+     * 
+     * @param x
+     *            X-coordinate
+     * @param y
+     *            Y-coordinate
+     * @param newHead
+     *            Where the new head should be
+     * @param growing
+     *            If the snake should grow or not
+     */
     private void advance(int x, int y, SnakeSegment newHead, boolean growing)
     {
         SnakeSegment oldHead = snake.getHead();
@@ -239,6 +306,9 @@ public class SnakeGame
     }
 
 
+    /**
+     * Ends the game
+     */
     private void endGame()
     {
         running = false;
@@ -246,6 +316,13 @@ public class SnakeGame
     }
 
 
+    /**
+     * If the tile contains the snake.
+     * 
+     * @param tile
+     *            The tile being checked
+     * @return Returns if the tile contains the snake
+     */
     private boolean isSnakeTile(char tile)
     {
         return tile == GameBoard.BODY || tile == GameBoard.SPECIAL
@@ -253,11 +330,14 @@ public class SnakeGame
     }
 
 
+    /**
+     * Starts the play of the game.
+     */
     public void play()
     {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Welcome to Snake!");
+        System.out.println("Welcome to Dizzy Snakes!");
         System.out.println("Press ENTER to start...");
         in.nextLine();
 
@@ -278,7 +358,7 @@ public class SnakeGame
                     }
                     if (!line.isEmpty())
                     {
-                        processInput(line.charAt(0));
+                        processInput(String.valueOf(line.charAt(0)));
                     }
                 }
             }
@@ -304,6 +384,12 @@ public class SnakeGame
     }
 
 
+    /**
+     * Runs the main game
+     * 
+     * @param args
+     *            Inputed starting game.
+     */
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
@@ -316,7 +402,7 @@ public class SnakeGame
             String answer = "";
             while (true)
             {
-                System.out.println("Play again (y/n): ");
+                System.out.print("Play again (y/n): ");
                 answer = in.nextLine().trim();
 
                 if (answer.equalsIgnoreCase("y"))
@@ -327,6 +413,11 @@ public class SnakeGame
                 {
                     System.out.println("Goodbye!");
                     return;
+                }
+                else if (answer.length() == 1
+                    && "wasd".contains(answer.toLowerCase()))
+                {
+                    continue;
                 }
                 else
                 {

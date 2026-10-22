@@ -231,6 +231,10 @@ public class GameBoard
     @Override
     public String toString()
     {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=======================\n");
+        sb.append("     DIZZY SNAKES      \n");
+        sb.append("=======================\n");
         StringBuilder border = new StringBuilder("+");
         for (int c = 0; c < columns; c++)
         {
@@ -238,7 +242,7 @@ public class GameBoard
         }
         border.append("+\n");
 
-        StringBuilder sb = new StringBuilder(border);
+        sb.append(border);
         for (int r = 0; r < rows; r++)
         {
             sb.append('|');
