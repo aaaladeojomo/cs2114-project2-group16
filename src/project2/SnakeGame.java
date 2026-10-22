@@ -1,5 +1,6 @@
 package project2;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -53,6 +54,7 @@ public class SnakeGame
     {
         return !running;
     }
+    
 
 
     /**
@@ -109,10 +111,16 @@ public class SnakeGame
     public boolean isDirectionValid(String c)
     {
         String current = snake.getDirection();
-        return !((current.equals("w") && c.equals("s"))
-            || (current.equals("s") && c.equals("w"))
-            || (current.equals("a") && c.equals("w"))
-            || (current.equals("d") && c.equals("a")));
+
+        if (snake.getLength() > 1)
+        {
+            return !((current.equals("w") && c.equals("s"))
+                || (current.equals("s") && c.equals("w"))
+                || (current.equals("a") && c.equals("d"))
+                || (current.equals("d") && c.equals("a")));
+        }
+        return true;
+
     }
 
 
@@ -156,7 +164,14 @@ public class SnakeGame
         {
             return;
         }
-
+        
+        double chance = Math.random();
+        Random r = new Random();
+        
+        
+        
+          
+        
         SnakeSegment head = snake.getHead();
         int nextX = head.getRow();
         int nextY = head.getCol();
@@ -178,6 +193,31 @@ public class SnakeGame
         }
 
         collision(nextX, nextY);
+        
+        //10% chance for a spike item to spawn in up to 2 spikes can be on the map at once
+        if (board.countItems(GameBoard.SPIKE) < 2 && r.nextDouble() < 0.10)
+        {
+            board.spawnItem(GameBoard.SPIKE);
+        }
+        
+        //7% chance for a wall item to spawn in, up to 2 walls can be on the map at once
+        if (board.countItems(GameBoard.WALL) < 2 && r.nextDouble() < 0.07)
+        {
+            board.spawnItem(GameBoard.WALL);
+        }
+        
+        if (chance < 0.10) board.moveItem(GameBoard.SPIKE);
+        if (chance < 0.10) board.moveItem(GameBoard.WALL);
+        
+        //4% chance for a shield item to spawn in 
+        if (!hasShield && board.countItems(GameBoard.SHIELD) == 0)
+        {
+            if (Math.random() < 0.04)
+            {
+                board.spawnItem(GameBoard.SHIELD);
+            }
+        }
+        
     }
 
 
@@ -371,7 +411,7 @@ public class SnakeGame
 
             try
             {
-                Thread.sleep(500);
+                Thread.sleep(650);
             }
             catch (InterruptedException e)
             {

@@ -138,6 +138,64 @@ public class GameBoard
     {
         return x >= 0 && x < columns && y >= 0 && y < rows;
     }
+    
+    public int[] getRandomEmptyTile()
+    {
+        while (true)
+        {
+            int x = (int)(Math.random() * getWidth());
+            int y = (int)(Math.random() * getHeight());
+            
+            if (getTile(x, y) == EMPTY)
+            {
+                return new int[]{x,y};
+            }
+        }
+    }
+    
+    public void moveItem(char itemType)
+    {
+        for (int i = 0; i < getWidth(); i++)
+        {
+           for (int j = 0; j < getHeight(); j++)
+           {
+               if (grid[j][i] == itemType)
+               {
+                   grid[j][i] = EMPTY;
+               }
+           }
+        }
+        
+        int[] position = getRandomEmptyTile();
+        
+        grid[position[1]][position[0]] = itemType;
+        
+        if (itemType == FOOD)
+        {
+            foodColumn = position[0];
+            foodRow = position[1];
+            
+        }
+        
+        
+    }
+    
+    public int countItems(char itemType)
+    {
+        int count = 0;
+        for (int i = 0; i < getWidth(); i++)
+        {
+            for (int j = 0; j < getHeight(); j++)
+            {
+                if (grid[j][i] == itemType)
+                {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
 
 
     /**
