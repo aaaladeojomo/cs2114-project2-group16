@@ -30,17 +30,17 @@ SnakeSegmentTest -
 SpecialSegment - Chris Tricarico, I implemented all the methods, constructors, fields, and added descriptions
 SpecialSegmentTest - Chris Tricarico, I implemented all the test methods and ensured they covered all the methods in the SpecialSegment class
 
-NormalSegment - 
-NormalSegmentTest -
+NormalSegment - Rafik Khismatov, I filled in the constructor, head flag, and getSymbol()
+NormalSegmentTest - Rafik Khismatov, I wrote tests for the constructor, symbols, and bad coordinates
 
-SnakeGame -
-SnakeGameTest -
+SnakeGame - Rafik Khismatov,  I implemented input handling, movement, and collision rules
+SnakeGameTest - Rafik Khismatov,  I wrote tests for eating, walls, shields, spikes, and invalid input
 
 LinkedChain - Ayomide Alade-Ojomo, i implemented the tests for the linkedchain class and made sure that it worked how we would want too for our classes
 LinkedChainTest -
 
-GameBoard -
-GameBoardTest -
+GameBoard - Rafik Khismatov, I implemented the grid, tile methods, bounds checking, item spawning, and printing, using GenAI to help write it
+GameBoardTest - Rafik Khismatov, I wrote a normal and bad-input case for each method
 
 SnakeGame - 
 SnakeGameTest - 
