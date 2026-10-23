@@ -1,8 +1,8 @@
 # cs2114-project2-group16
 
 ## How to Compile/Run the Program and Tests
-Right click the file DizzySnakes.java and "Run As" java application to start the working game.
-Right click the file DizzySnakes.java and "Run As" Junit Test to run the tests.
+Right click the file SnakeGame.java and "Run As" java application to start the working game.
+Right click any test class file OR the project2 package and "Run As" Junit Test to run the tests.
 
 ## Reflection
 A lot of the changes we made were adding or changing classes so they better matched what other group members wrote. For example, in Snake class
@@ -19,6 +19,7 @@ The stretch goals we will attempt are the power-ups like shield and more, and if
 We will need more tests to handle bad inputs that are with the powerups, like if they are null. We also need to create more situations where the snake could potentially run into itself or have a problem with borders, like for example doing more testing for along the edge of the map and with objects we place on the board.
 
 ## Attribution Table
+We all went through and debugged, along with fixing tests in other peoples classes. The main classes we were in charge of were...
 
 Snake - Sophie Linton, I wrote all the methods, constructors, fields, and descriptions. 
 SnakeTest - Sophie Linton, I wrote all the test methods and used GenAI to figure out why some of the tests weren't covering all the cases.
