@@ -238,10 +238,32 @@ public class SnakeGame
 
         char tile = board.getTile(xNext, yNext);
 
-        if (tile == GameBoard.WALL || isSnakeTile(tile))
+        if (tile == GameBoard.WALL)
+        {
+            if (hasShield())
+            {
+
+                hasShield = false;
+                board.setTile(xNext, yNext, GameBoard.EMPTY);
+                advance(
+                    xNext,
+                    yNext,
+                    new NormalSegment(xNext, yNext, false),
+                    false);
+            }
+            else
+            {
+                endGame();
+            }
+            return;
+        }
+
+        if (tile == GameBoard.BODY || tile == GameBoard.SPECIAL
+            || tile == GameBoard.HEAD)
         {
             useShieldOrDie();
             return;
+
         }
 
         if (tile == GameBoard.FOOD)
@@ -249,13 +271,15 @@ public class SnakeGame
             score++;
             advance(xNext, yNext, new NormalSegment(xNext, yNext, false), true);
             board.spawnItem(GameBoard.FOOD);
+            return;
         }
-        else if (tile == GameBoard.SHIELD)
+        if (tile == GameBoard.SHIELD)
         {
             hasShield = true;
             advance(xNext, yNext, new NormalSegment(xNext, yNext, false), true);
+            return;
         }
-        else if (tile == GameBoard.SPIKE)
+        if (tile == GameBoard.SPIKE)
         {
             advance(
                 xNext,
@@ -377,7 +401,15 @@ public class SnakeGame
         Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to Dizzy Snakes!");
+        System.out.println("Game Instructions:");
+        System.out.println(
+            "Use your Snake to collect as much food and grow as long as you can! Make sure to avoid spikes and walls.");
+        System.out.println("* - food");
+        System.out.println("+ - shield");
+        System.out.println("^ - spikes");
+        System.out.println("# - wall");
         System.out.println("Press ENTER to start...");
+
         in.nextLine();
 
         while (running)
