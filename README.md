@@ -34,12 +34,14 @@ NormalSegment - Rafik Khismatov, I filled in the constructor, head flag, and get
 NormalSegmentTest - Rafik Khismatov, I wrote tests for the constructor, symbols, and bad coordinates
 
 SnakeGame - Rafik Khismatov,  I implemented input handling, movement, and collision rules
+			Ayomide Alade-Ojomo, I implemented accounting for bad inputs, randomization for spikes, walls and shields, and updated collision, direction, and movement mechanics
 SnakeGameTest - Rafik Khismatov,  I wrote tests for eating, walls, shields, spikes, and invalid input
 
 LinkedChain - Ayomide Alade-Ojomo, i implemented the tests for the linkedchain class and made sure that it worked how we would want too for our classes
 LinkedChainTest -
 
 GameBoard - Rafik Khismatov, I implemented the grid, tile methods, bounds checking, item spawning, and printing, using GenAI to help write it
+Ayomide Alade-Ojomo, I implemented more variety and randomization with item spawning
 GameBoardTest - Rafik Khismatov, I wrote a normal and bad-input case for each method
 
 SnakeGame - 
