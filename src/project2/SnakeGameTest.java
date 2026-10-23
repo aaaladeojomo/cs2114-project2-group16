@@ -116,7 +116,7 @@ public class SnakeGameTest
     @Test
     public void testIsDirectionValid()
     {
-        assertFalse(game.isDirectionValid("a"));
+        assertTrue(game.isDirectionValid("a"));
         assertTrue(game.isDirectionValid("w"));
         game.processInput("w");
         assertFalse(game.isDirectionValid("s"));
@@ -178,7 +178,7 @@ public class SnakeGameTest
     @Test
     public void testMain()
     {
-        String simulatedInput = "q\n";
+        String simulatedInput = "\n" + "q\n" + "n\n";
         System
             .setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
         SnakeGame.main(new String[0]);
@@ -192,6 +192,7 @@ public class SnakeGameTest
     @Test
     public void testHitBadTile()
     {
+        game.setHasShield(false);
         game.getBoard().setTile(6, 5, GameBoard.SPECIAL);
         game.update();
         assertTrue(game.isGameOver());

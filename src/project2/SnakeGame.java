@@ -36,7 +36,7 @@ public class SnakeGame
 
         running = true;
         score = 0;
-        hasShield = false;
+        setHasShield(false);
 
         board.spawnItem(GameBoard.FOOD);
         board.spawnItem(GameBoard.SPIKE);
@@ -74,7 +74,7 @@ public class SnakeGame
      */
     public boolean hasShield()
     {
-        return hasShield;
+        return getHasShield();
     }
 
 
@@ -209,7 +209,7 @@ public class SnakeGame
             board.moveItem(GameBoard.WALL);
 
         // 4% chance for a shield item to spawn in
-        if (!hasShield && board.countItems(GameBoard.SHIELD) == 0)
+        if (!getHasShield() && board.countItems(GameBoard.SHIELD) == 0)
         {
             if (Math.random() < 0.04)
             {
@@ -243,7 +243,7 @@ public class SnakeGame
             if (hasShield())
             {
 
-                hasShield = false;
+                setHasShield(false);
                 board.setTile(xNext, yNext, GameBoard.EMPTY);
                 advance(
                     xNext,
@@ -275,7 +275,7 @@ public class SnakeGame
         }
         if (tile == GameBoard.SHIELD)
         {
-            hasShield = true;
+            setHasShield(true);
             advance(xNext, yNext, new NormalSegment(xNext, yNext, false), true);
             return;
         }
@@ -287,9 +287,9 @@ public class SnakeGame
                 new NormalSegment(xNext, yNext, false),
                 false);
 
-            if (hasShield)
+            if (getHasShield())
             {
-                hasShield = false;
+                setHasShield(false);
             }
             else
             {
@@ -358,9 +358,9 @@ public class SnakeGame
 
     private void useShieldOrDie()
     {
-        if (hasShield)
+        if (getHasShield())
         {
-            hasShield = false;
+            setHasShield(false);
         }
         else
         {
@@ -416,7 +416,7 @@ public class SnakeGame
         {
             System.out.println(board);
             System.out
-                .println("Score: " + score + (hasShield ? "   [SHIELD]" : ""));
+                .println("Score: " + score + (getHasShield() ? "   [SHIELD]" : ""));
 
             try
             {
@@ -496,5 +496,17 @@ public class SnakeGame
                 }
             }
         }
+    }
+
+
+    public boolean getHasShield()
+    {
+        return hasShield;
+    }
+
+
+    public void setHasShield(boolean hasShield)
+    {
+        this.hasShield = hasShield;
     }
 }

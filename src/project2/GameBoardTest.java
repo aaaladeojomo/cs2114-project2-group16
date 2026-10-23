@@ -239,6 +239,117 @@ public class GameBoardTest
     {
         GameBoard b = new GameBoard(2, 1);
         b.setTile(0, 0, GameBoard.FOOD);
-        assertEquals("+--+\n|* |\n+--+\n", b.toString());
+        assertEquals(
+            "=======================\n" + "     DIZZY SNAKES      \n"
+                + "=======================\n" + "+--+\n" + "|* |\n" + "+--+\n",
+            b.toString());
     }
+    
+    
+    // ----------------------------------------------------------
+    /**
+     * test that this will return an empty tile
+     */
+    @Test
+    public void testGetRandomEmptyTile()
+    {
+        GameBoard gb = new GameBoard(5, 5, new Random(42));
+        
+       gb.setTile(0, 0, GameBoard.WALL);
+       
+       int[] position = gb.getRandomEmptyTile();
+       
+       assertTrue(gb.isValidCoordinate(position[0], position[1]));
+       assertEquals(GameBoard.EMPTY, gb.getTile(position[0], position[1]));
+    
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * Test that this will return the only empty tile on the board
+     */
+    @Test
+    public void testGetRandomEmptyTile2()
+    {
+        GameBoard gb = new GameBoard(3, 3, new Random(1));
+        
+        for (int i = 0; i < 3; i++ )
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                gb.setTile(j, i, GameBoard.WALL);
+            }
+        }
+        
+        gb.setTile(1, 1, GameBoard.EMPTY);
+        
+        int[] position = gb.getRandomEmptyTile();
+        
+        assertEquals(1, position[0]);
+        assertEquals(1, position[1]);
+    }
+    
+    
+    // ----------------------------------------------------------
+    /**
+     * test we can count the right amount of tiles
+     */
+    @Test
+    public void testCountItems()
+    {
+        GameBoard gb = new GameBoard(4, 4);
+        
+        gb.setTile(0, 0, GameBoard.FOOD);
+        gb.setTile(1, 1, GameBoard.FOOD);
+        gb.setTile(2,2, GameBoard.WALL);
+        
+        assertEquals(2, gb.countItems(GameBoard.FOOD));
+        assertEquals(1, gb.countItems(GameBoard.WALL));
+        assertEquals(0, gb.countItems(GameBoard.SPIKE));
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * tests we can move an item
+     */
+    @Test
+    public void testMoveItem()
+    {
+        GameBoard gb = new GameBoard(5, 5, new Random(42));
+        
+        gb.setTile(2, 2, GameBoard.SPIKE);
+        
+        gb.moveItem(GameBoard.SPIKE); 
+        
+        assertEquals(GameBoard.EMPTY, gb.getTile(2, 2));
+        
+        assertEquals(1, gb.countItems(GameBoard.SPIKE));
+        
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * test that the item will move to the onyl empty spot on the map
+     */
+    @Test
+    public void testMoveItem2()
+    {
+       GameBoard gb = new GameBoard(3, 3, new Random(7));
+       for (int i = 0; i < 3; i++ )
+       {
+           for (int j = 0; j < 3; j++)
+           {
+               gb.setTile(j, i, GameBoard.WALL);
+           }
+       }
+       
+       gb.setTile(1, 1, GameBoard.EMPTY);
+       
+       gb.moveItem(GameBoard.SHIELD);
+       
+       assertEquals(GameBoard.SHIELD, gb.getTile(1, 1));
+       
+       
+    }
+    
 }
