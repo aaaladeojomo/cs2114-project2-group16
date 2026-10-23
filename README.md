@@ -1,4 +1,4 @@
-# cs2114-project2-group16
+# cs2114-project2-group16 - Dizzy Snakes
 
 ## How to Compile/Run the Program and Tests
 Right click the file SnakeGame.java and "Run As" java application to start the working game.
