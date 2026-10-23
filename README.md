@@ -31,14 +31,17 @@ SpecialSegment - Chris Tricarico, I implemented all the methods, constructors, f
 SpecialSegmentTest - Chris Tricarico, I implemented all the test methods and ensured they covered all the methods in the SpecialSegment class
 
 NormalSegment - 
-NormalSegmentTest
+NormalSegmentTest -
 
-SnakeGame
+SnakeGame -
+SnakeGameTest -
 
 LinkedChain - Ayomide Alade-Ojomo, i implemented the tests for the linkedchain class and made sure that it worked how we would want too for our classes
+LinkedChainTest -
 
+GameBoard -
+GameBoardTest -
 
+SnakeGame - 
+SnakeGameTest - 
 
-GameBoard
-
-Snake Game - 
